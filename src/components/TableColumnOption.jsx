@@ -1,16 +1,20 @@
 import { useRef } from "react";
+import CheckBox from "./CheckBox";
 
-function TableColumnOption({ onHandleOptionStatus }) {
-  // ${
-  //   optionStatus ? "hidden" : ""
-  // }
+function TableColumnOption({
+  onHandleOptionStatus,
+  onCheckboxChange,
+  onHandleFilterColumns,
+  value,
+}) {
+  // hide the column option, when user click outside in it
   const optionRef = useRef();
   const handleCloseOption = (e) => {
     if (optionRef.current === e.target) {
-      // console.log("clicked");
       onHandleOptionStatus();
     }
   };
+
   return (
     <div
       className="absolute inset-0"
@@ -24,41 +28,15 @@ function TableColumnOption({ onHandleOptionStatus }) {
         {/* <!-- title  --> */}
         <h3 className="text-lg font-semibold">Add or remove title </h3>
         <form action="" className="flex flex-col gap-4 py-2">
-          <div className="flex gap-2 items-center ">
-            <input
-              type="checkbox"
-              className="accent-red-500 outline-2 w-4 h-4 rounded-md"
+          {Object.keys(value).map((keys, id) => (
+            <CheckBox
+              key={id}
+              label={keys}
+              checked={value[keys]}
+              onCheckboxChange={onCheckboxChange}
+              onHandleFilterColumns={onHandleFilterColumns}
             />
-            <span className="text-lg capitalize font-semibold">title</span>
-          </div>
-          <div className="flex gap-2 items-center ">
-            <input
-              type="checkbox"
-              className="accent-red-500 outline-2 w-4 h-4 rounded-md"
-            />
-            <span className="text-lg capitalize font-semibold">categories</span>
-          </div>
-          <div className="flex gap-2 items-center ">
-            <input
-              type="checkbox"
-              className="accent-red-500 outline-2 w-4 h-4 rounded-md"
-            />
-            <span className="text-lg capitalize font-semibold">date</span>
-          </div>
-          <div className="flex gap-2 items-center ">
-            <input
-              type="checkbox"
-              className="accent-red-500 outline-2 w-4 h-4 rounded-md"
-            />
-            <span className="text-lg capitalize font-semibold">time</span>
-          </div>
-          <div className="flex gap-2 items-center ">
-            <input
-              type="checkbox"
-              className="accent-red-500 outline-2 w-4 h-4 rounded-md"
-            />
-            <span className="text-lg capitalize font-semibold">action</span>
-          </div>
+          ))}
         </form>
       </div>
     </div>

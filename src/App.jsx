@@ -1,13 +1,49 @@
 import { useState } from "react";
 import Table from "./components/Table";
 import TableColumnOption from "./components/TableColumnOption";
-
+import { data } from "./utils/data";
 function App() {
-  const [showColumnOptions, setColumnOptions] = useState(false);
-  const handleOptionStatus = () => {
-    setColumnOptions((prev) => !prev);
+  const [tableData, setTableData] = useState(data);
+  const [showColumnOptions, setShowColumnOptions] = useState(false);
+  const [columnOption, setColumnOptions] = useState({
+    title: true,
+    categories: true,
+    price: false,
+    date: true,
+    author: false,
+    status: true,
+    action: true,
+  });
+
+  const handleColumnOptionChange = (option) => {
+    console.log(option);
+    setColumnOptions({
+      ...columnOption,
+      [option]: !columnOption[option],
+    });
+  };
+  const handleToggleOptions = () => {
+    setShowColumnOptions((prev) => !prev);
     console.log("clicked");
   };
+
+  // const handleFilterColumn = () => {
+  //   console.log("hello");
+  //   console.log(columnOption);
+  //   const filteredData = tableData.map((item) => {
+  //     const filteredItem = {};
+  //     Object.keys(columnOption).map((key) => {
+  //       if (columnOption[key]) {
+  //         filteredItem[key] = item[key];
+  //       }
+  //     });
+  //     return filteredItem;
+  //   });
+  //   // console.log(filteredData);
+  //   setTableData([...filteredData]);
+  // };
+
+  console.log(tableData);
   return (
     // <!-- container section  -->
     <section className="container max-w-6xl  border-2 border-gray-300 rounded-md px-2 py-3  mx-auto mt-5 relative">
@@ -20,7 +56,7 @@ function App() {
             id="menu-btn"
             className="block hamburger "
             type="button"
-            onClick={handleOptionStatus}
+            onClick={handleToggleOptions}
           >
             <span className="hamburger-top"></span>
             <span className="hamburger-middle"></span>
@@ -32,12 +68,16 @@ function App() {
 
       {/* <!-- table column option design  --> */}
       {showColumnOptions && (
-        <TableColumnOption onHandleOptionStatus={handleOptionStatus} />
+        <TableColumnOption
+          onHandleOptionStatus={handleToggleOptions}
+          onCheckboxChange={handleColumnOptionChange}
+          value={columnOption}
+        />
       )}
       {/* <!-- end of table column option  --> */}
 
       {/* <!-- table  --> */}
-      <Table />
+      <Table tableData={tableData} columnOption={columnOption} />
       {/* <!-- end of table  --> */}
     </section>
   );

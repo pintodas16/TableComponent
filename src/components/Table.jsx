@@ -1,30 +1,49 @@
 import TableRow from "./TableRow";
 
-function Table() {
+function Table({ tableData, columnOption }) {
+  console.log(tableData, columnOption);
+  const gridColSpan = Object.values(columnOption).reduce(
+    (count, value) => (value ? count + 1 : count),
+    0
+  );
+  console.log(gridColSpan);
+  console.log(typeof gridColSpan);
+  const filteredData = tableData.map((item) => {
+    const filteredItem = {};
+    Object.keys(columnOption).map((key) => {
+      if (columnOption[key]) {
+        filteredItem[key] = item[key];
+      }
+    });
+
+    return filteredItem;
+  });
+
   return (
     <div className="table_scroll overflow-x-auto bg-white">
       {/* <!-- table container  --> */}
       <div className="w-[70.5rem] h-96 ">
         {/* <!-- grid section for table  --> */}
         <div className="">
-          {/* <!-- for table heading  --> */}
-          <div className=" grid grid-cols-6 border-b-2 py-2 px-2 font-semibold capitalize text-lg">
-            <div>title</div>
-            <div>categories</div>
-            <div>price</div>
-            <div>date</div>
-            <div>status</div>
-            <div>action</div>
+          {/* <!-- for table heading grid grid-cols-7 flex gap-28 --> */}
+          <div
+            className={`grid grid-cols-${gridColSpan} justify-left border-b-2 py-2 px-2 font-semibold capitalize text-lg`}
+          >
+            {/* <div className={` border w-full`}>title</div> */}
+            {columnOption.title && <div>title</div>}
+            {columnOption.categories && <div>categories</div>}
+            {columnOption.price && <div>price</div>}
+            {columnOption.date && <div>date</div>}
+            {columnOption.author && <div>author</div>}
+            {columnOption.status && <div>status</div>}
+            {columnOption.action && <div>action</div>}
           </div>
           {/* <!-- for table data container   --> */}
-          <div className=" grid  ">
+          <div className="  ">
             {/* <!-- for row  --> */}
-            <TableRow />
-            <TableRow />
-            <TableRow />
-            <TableRow />
-            <TableRow />
-            <TableRow />
+            {filteredData.map((data, id) => (
+              <TableRow key={id} data={data} colspan={gridColSpan} />
+            ))}
           </div>
         </div>
       </div>
