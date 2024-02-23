@@ -1,8 +1,8 @@
-function TableRow({ data, colspan }) {
+function TableRow({ data }) {
   // console.log(data); grid  grid-cols-7 flex gap-28
   return (
     <div
-      className={`grid  grid-cols-${colspan}
+      className={`grid grid-cols-7
        px-2 py-4 border-b-2 border-b-gray-200 `}
     >
       {data.title && <div>{data.title}</div>}

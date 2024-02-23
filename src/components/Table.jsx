@@ -1,11 +1,12 @@
 import TableRow from "./TableRow";
 
 function Table({ tableData, columnOption }) {
-  console.log(tableData, columnOption);
+  // console.log(tableData, columnOption);
   const gridColSpan = Object.values(columnOption).reduce(
     (count, value) => (value ? count + 1 : count),
     0
   );
+
   console.log(gridColSpan);
   console.log(typeof gridColSpan);
   const filteredData = tableData.map((item) => {
@@ -27,7 +28,7 @@ function Table({ tableData, columnOption }) {
         <div className="">
           {/* <!-- for table heading grid grid-cols-7 flex gap-28 --> */}
           <div
-            className={`grid grid-cols-${gridColSpan} justify-left border-b-2 py-2 px-2 font-semibold capitalize text-lg`}
+            className={`grid grid-cols-7   border-b-2 py-2 px-2 font-semibold capitalize text-lg`}
           >
             {/* <div className={` border w-full`}>title</div> */}
             {columnOption.title && <div>title</div>}
