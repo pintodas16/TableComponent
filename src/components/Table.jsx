@@ -36,7 +36,7 @@ function Table({ tableData, columnOption }) {
           <div className="  ">
             {/* <!-- for row  --> */}
             {filteredData.map((data, id) => (
-              <TableRow key={id} data={data} colspan={gridColSpan} />
+              <TableRow key={id} data={data} />
             ))}
           </div>
         </div>
