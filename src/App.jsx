@@ -15,42 +15,27 @@ function App() {
     action: true,
   });
 
+  // handle column options by user
   const handleColumnOptionChange = (option) => {
-    console.log(option);
+    // console.log(option);
     setColumnOptions({
       ...columnOption,
       [option]: !columnOption[option],
     });
   };
+
+  // handle column option modal open and close
   const handleToggleOptions = () => {
     setShowColumnOptions((prev) => !prev);
-    console.log("clicked");
   };
 
-  // const handleFilterColumn = () => {
-  //   console.log("hello");
-  //   console.log(columnOption);
-  //   const filteredData = tableData.map((item) => {
-  //     const filteredItem = {};
-  //     Object.keys(columnOption).map((key) => {
-  //       if (columnOption[key]) {
-  //         filteredItem[key] = item[key];
-  //       }
-  //     });
-  //     return filteredItem;
-  //   });
-  //   // console.log(filteredData);
-  //   setTableData([...filteredData]);
-  // };
-
-  console.log(tableData);
   return (
     // <!-- container section  -->
     <section className="container max-w-6xl  border-2 border-gray-300 rounded-md px-2 py-3  mx-auto mt-5 relative">
       {/* <!-- for title and option button  --> */}
       <div className="mb-6 flex  justify-between items-center ">
         <h2 className="text-xl font-semibold capitalize">Table title </h2>
-        {/* <!-- design hamburger icon  --> */}
+        {/* <!-- design hamburger icon button  --> */}
         <div>
           <button
             id="menu-btn"
@@ -63,10 +48,10 @@ function App() {
             <span className="hamburger-bottom"></span>
           </button>
         </div>
-        {/* <!-- design end hamburger icon  --> */}
+        {/* <!-- design end hamburger icon button end   --> */}
       </div>
 
-      {/* <!-- table column option design  --> */}
+      {/* <!-- table column options design  --> */}
       {showColumnOptions && (
         <TableColumnOption
           onHandleOptionStatus={handleToggleOptions}
@@ -74,7 +59,7 @@ function App() {
           value={columnOption}
         />
       )}
-      {/* <!-- end of table column option  --> */}
+      {/* <!-- end of table column options  --> */}
 
       {/* <!-- table  --> */}
       <Table tableData={tableData} columnOption={columnOption} />

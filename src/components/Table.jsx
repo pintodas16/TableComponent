@@ -1,14 +1,7 @@
 import TableRow from "./TableRow";
 
 function Table({ tableData, columnOption }) {
-  // console.log(tableData, columnOption);
-  const gridColSpan = Object.values(columnOption).reduce(
-    (count, value) => (value ? count + 1 : count),
-    0
-  );
-
-  console.log(gridColSpan);
-  console.log(typeof gridColSpan);
+  // filter table column based column option
   const filteredData = tableData.map((item) => {
     const filteredItem = {};
     Object.keys(columnOption).map((key) => {
