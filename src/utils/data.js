@@ -1,21 +1,11 @@
-const statusObj = {
-  title: true,
-  categories: false,
-  price: false,
-  date: true,
-  author: true,
-  status: true,
-  action: false,
-};
-
 const data = [
   {
-    title: "rahim",
+    title: "pinto",
     categories: "book",
     price: "123",
     date: "12-2-24",
-    author: "pinto",
-    status: ["publish", "Draft"],
+    author: "admin",
+    status: "publish",
     action: "edit",
   },
   {
@@ -23,8 +13,8 @@ const data = [
     categories: "book",
     price: "123",
     date: "12-2-23",
-    author: "karim",
-    status: ["publish", "Draft"],
+    author: "admin",
+    status: "draft",
     action: "edit",
   },
   {
@@ -32,10 +22,10 @@ const data = [
     categories: "book",
     price: "1234",
     date: "12-2-22",
-    author: "kiran",
-    status: ["publish", "Draft"],
+    author: "admin",
+    status: "publish",
     action: "edit",
   },
 ];
 
-export { statusObj, data };
+export { data };

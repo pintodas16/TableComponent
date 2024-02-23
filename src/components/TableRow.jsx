@@ -5,14 +5,22 @@ function TableRow({ data }) {
       className={`grid grid-cols-7
        px-2 py-4 border-b-2 border-b-gray-200 `}
     >
-      {data.title && <div>{data.title}</div>}
-      {data.categories && <div>{data.categories} </div>}
-      {data.price && <div>{data.price}</div>}
-      {data.date && <div>{data.date}</div>}
-      {data.author && <div>{data.author}</div>}
+      {data.title && <div className="font-semibold">{data.title}</div>}
+      {data.categories && (
+        <div className="font-semibold">{data.categories} </div>
+      )}
+      {data.price && <div className="font-semibold">{data.price}</div>}
+      {data.date && <div className="font-semibold">{data.date}</div>}
+      {data.author && <div className="font-semibold">{data.author}</div>}
       {data.status && (
         <div>
-          <select className="  border-2 px-2 py-1 rounded-md border-gray-200">
+          <select
+            className={` px-2 py-1 rounded-md  font-semibold  border-2 ${
+              data.status === "publish"
+                ? "border-green-400 text-green-700 focus:outline-green-600 "
+                : "border-gray-400 text-gray-600 focus:outline-gray-600"
+            }`}
+          >
             <option value="publish">publish</option>
             <option value="draft">draft</option>
           </select>

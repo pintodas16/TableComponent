@@ -26,7 +26,9 @@ function TableColumnOption({
         className={` absolute px-4 py-4  border border-gray-200 bg-white z-50 shadow-2xl rounded-lg top-0 right-0   `}
       >
         {/* <!-- title  --> */}
-        <h3 className="text-lg font-semibold">Add or remove title </h3>
+        <h3 className="text-lg font-semibold capitalize">
+          Add or remove columns{" "}
+        </h3>
         <form action="" className="flex flex-col gap-4 py-2">
           {Object.keys(value).map((keys, id) => (
             <CheckBox

@@ -1,7 +1,7 @@
 import TableRow from "./TableRow";
 
 function Table({ tableData, columnOption }) {
-  // filter table column based column option
+  // filter table data column based user choosen column option
   const filteredData = tableData.map((item) => {
     const filteredItem = {};
     Object.keys(columnOption).map((key) => {
